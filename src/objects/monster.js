@@ -6,13 +6,17 @@ export class Monster extends Container {
 
   }
   create(monsterX, monsterY){
-    const texture = Texture.from("blob.png");
+    let texture = Texture.from("blob.png");
     this.monster = new Sprite(texture);
     this.monster.x = monsterX;
     this.monster.y = monsterY;
-    this.monster.velocityY = 10;
+    this.monster.velocityY = 2;
     this.addChild(this.monster);
+
+    return this.monster;
  
   }
+
+  
 
 }
