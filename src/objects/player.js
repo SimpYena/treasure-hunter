@@ -1,10 +1,11 @@
 import { Container, Sprite, Texture } from "pixi.js";
+import { Monster } from "./monster";
 
 export class Player extends Container {
   constructor() {
     super();
-    this.velocityX = 5;
-    this.velocityY = 5;
+    this.velocityX = 20;
+    this.velocityY = 20;
     
     document.addEventListener("keydown", this.move.bind(this));
 
@@ -43,5 +44,9 @@ export class Player extends Container {
         if(this.y>=450)
             this.y=450;
     
+  }
+  checkCollision(){
+      this.monster = new Monster;
+
   }
 }

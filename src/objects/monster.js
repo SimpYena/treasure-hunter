@@ -10,7 +10,7 @@ export class Monster extends Container {
     this.monster = new Sprite(texture);
     this.monster.x = monsterX;
     this.monster.y = monsterY;
-    this.monster.velocityY = 2;
+    this.monster.velocityY = 3;
     this.addChild(this.monster);
 
     return this.monster;

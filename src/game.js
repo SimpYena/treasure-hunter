@@ -25,6 +25,6 @@ export default class Game {
   }
   update(deltaTime){
     this.gameScene.update(deltaTime);
-
+    
   }
 }
