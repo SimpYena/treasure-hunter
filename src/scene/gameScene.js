@@ -16,6 +16,7 @@ export class GameScene extends Container {
         this.deltaTime = 0;
         this.gameContainer = new Container();
         this.addChild(this.gameContainer);
+        this.collision = new Collision();
         this.initIngame();
         this.initGameWin();
         this.initGameLose();
@@ -62,6 +63,7 @@ export class GameScene extends Container {
     initMonster(){
             this.monsters = new MonsterMove();
             this.gameContainer.addChild(this.monsters);
+            this.monster = new Monster();
            
       }
     initGameOver(){
@@ -95,33 +97,32 @@ export class GameScene extends Container {
     
     
     
-    update(deltaTime) {
-        this.collision = new Collision();
-        this.monster = new Monster();
-        if(this.collision.collisondetect(this.player,this.monsters)){
-            this.health.width -=10;
-                if(this.health.width<=0) {
-                    this.lose.x = 90;
-                    this.lose.y = 30;
-                    this.gameContainer.removeChild(this.monsters);
-                }
-            
-                
-                
-            
-         }
+    update(deltaTime) { 
+        this.monsters.monsters.forEach(monster => {
+            if(this.collision.collisondetect(this.player,monster)){
+                this.health.width -=10;
+                    if(this.health.width<=0) {
+                        this.lose.x = 90;
+                        this.lose.y = 30;
+                        this.gameContainer.removeChild(this.monsters);
+                    }
+             }
+        })
+       
          if(this.collision.collisondetect(this.player,this.treasure)){
             this.player.velocityX = 2;
             this.player.velocityY = 2;
             this.treasure.x = this.player.x;
-            this.treasure.y = this.player.y;
-            
+            this.treasure.y = this.player.y; 
             
            
          }
          if(this.collision.collisondetect(this.treasure,this.door)){
                 this.win.x = 15;
                 this.win.y = 30;
+                
+            this.gameContainer.removeChild(this.monsters);
+           
          }
          
         
